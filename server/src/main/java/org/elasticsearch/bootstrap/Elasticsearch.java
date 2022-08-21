@@ -59,6 +59,14 @@ class Elasticsearch extends EnvironmentAwareCommand {
      * Main entry point for starting elasticsearch
      */
     public static void main(final String[] args) throws Exception {
+    
+        String esHome = "/Users/xiaochangbai/workspaces/idea/elasticsearch/home";
+        System.setProperty("es.path.home", esHome); // 设置 Elasticsearch 的【根】目录
+        System.setProperty("es.path.conf", esHome + "/config");  // 设置 Elasticsearch 的【配置】目录
+        System.setProperty("log4j2.disable.jmx", "true"); // 禁用 log4j2 的 JMX 监控，避免报错
+        System.setProperty("java.security.policy", esHome + "/config/java.policy"); // 设置 Java 的安全策略
+    
+    
         overrideDnsCachePolicyProperties();
         org.elasticsearch.bootstrap.Security.prepopulateSecurityCaller();
 
