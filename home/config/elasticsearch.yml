@@ -14,7 +14,7 @@
 #
 # Use a descriptive name for your cluster:
 #
-#cluster.name: my-application
+#cluster.name: elasticsearch
 #
 # ------------------------------------ Node ------------------------------------
 #
@@ -58,7 +58,7 @@
 # By default Elasticsearch listens for HTTP traffic on the first free port it
 # finds starting at 9200. Set a specific HTTP port here:
 #
-#http.port: 9200
+http.port: 9200
 #
 # For more information, consult the network module documentation.
 #
@@ -80,10 +80,13 @@
 # Allow wildcard deletion of indices:
 #
 #action.destructive_requires_name: false
-
+#discovery.type: single-node
+cluster.name: "elasticsearch"
 node.name: node-1 # 设置 ES 节点名
 xpack.security.enabled: false # 禁用 X-Pack 提供的安全认证功能，方便测试
 xpack.ml.enabled: false
-
+network.host: 0.0.0.0
 path.data: /Users/xiaochangbai/workspaces/idea/elasticsearch/home/data
 path.logs: /Users/xiaochangbai/workspaces/idea/elasticsearch/home/logs
+discovery.seed_hosts: ["node-1"]
+cluster.initial_master_nodes: ["node-1"]
